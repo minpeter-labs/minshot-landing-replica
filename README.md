@@ -24,7 +24,7 @@ Open `http://127.0.0.1:4173/` or `http://127.0.0.1:4173/zh/`.
 Cloudflare Pages deployment used for QA:
 
 ```sh
-env CLOUDFLARE_ACCOUNT_ID=795b98fae2d3efac0afc7a41494cc697 \
+CLOUDFLARE_ACCOUNT_ID=<your-account-id> \
   bunx wrangler pages deploy dist \
   --project-name minshot-landing-replica \
   --branch main \
