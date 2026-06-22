@@ -80,6 +80,13 @@ const capturePage = async ({ browser, path, url, viewport }) => {
     return {
       bodyText: document.body.innerText,
       documentHeight: document.documentElement.scrollHeight,
+      footerColors: Array.from(
+        document.querySelectorAll("footer a, footer span[aria-hidden='true']"),
+        (element) => ({
+          color: getComputedStyle(element).color,
+          text: element.textContent?.trim() ?? "",
+        }),
+      ),
       hrefs: Array.from(document.querySelectorAll("a"), (anchor) => anchor.getAttribute("href")),
       horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth,
       lang: document.documentElement.lang,
@@ -114,6 +121,7 @@ const checkHttp = async (url) => {
 }
 
 const getFooterLinks = (layout) => layout.hrefs.slice(-4).map((href) => href ?? null)
+const getFooterColors = (layout) => layout.footerColors
 
 const run = async () => {
   const localUrl = process.env.LOCAL_URL ?? "http://127.0.0.1:4173"
@@ -216,6 +224,9 @@ const run = async () => {
     localVsLive,
     localZhMobile,
     pass: {
+      footerColorsMatchLive:
+        JSON.stringify(getFooterColors(localDesktop.layout)) ===
+        JSON.stringify(getFooterColors(liveDesktop.layout)),
       footerLinksMatchLive:
         JSON.stringify(getFooterLinks(localDesktop.layout)) ===
         JSON.stringify(getFooterLinks(liveDesktop.layout)),

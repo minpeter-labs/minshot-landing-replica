@@ -26,9 +26,11 @@
 :root {
   --slate-1: #fcfcfd;
   --slate-6: #d9d9e0;
+  --slate-a11: rgba(0, 7, 20, 0.624);
   --slate-11: #60646c;
   --slate-12: #1c2024;
   --gray-a2: rgba(0, 0, 0, 0.024);
+  --blue-a11: rgba(0, 109, 203, 0.95);
   --blue-9: #0090ff;
   --blue-10: #0588f0;
   --radius-4: 8px;
@@ -365,12 +367,20 @@ h2 {
   gap: 12px;
 }
 
-.footer-links span {
+.footer-links > span[aria-hidden="true"] {
   color: var(--slate-6);
 }
 
 .accent-link {
   color: var(--blue-9);
+}
+
+.site-footer .text-link {
+  color: var(--slate-a11);
+}
+
+.site-footer .accent-link {
+  color: var(--blue-a11);
 }
 
 :focus-visible {
