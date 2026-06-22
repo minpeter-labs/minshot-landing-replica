@@ -26,11 +26,9 @@ Cloudflare Pages deployment used for QA:
 ```sh
 env CLOUDFLARE_ACCOUNT_ID=795b98fae2d3efac0afc7a41494cc697 \
   bunx wrangler pages deploy dist \
-  --project-name minshot-vite-temp-20260622 \
+  --project-name minshot-landing-replica \
   --branch main \
   --commit-dirty=true
 ```
 
-Current deployed URL: [https://minshot-vite-temp-20260622.pages.dev/](https://minshot-vite-temp-20260622.pages.dev/)
-
-Latest verified deployment: [https://da5ae3cc.minshot-vite-temp-20260622.pages.dev/](https://da5ae3cc.minshot-vite-temp-20260622.pages.dev/)
+Current deployed URL: [https://minshot-landing-replica.pages.dev/](https://minshot-landing-replica.pages.dev/)
