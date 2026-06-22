@@ -182,6 +182,9 @@ const run = async () => {
 
     await writeFile(evidenceFile, `${JSON.stringify(result, null, 2)}\n`)
     console.log(JSON.stringify(result.pass, null, 2))
+    if (!pass.ok) {
+      process.exitCode = 1
+    }
   } finally {
     await browser.close()
   }
