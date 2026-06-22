@@ -57,7 +57,7 @@ const capturePage = async ({ browser, path, url, viewport }) => {
 
   const response = await page.goto(url, { waitUntil: "domcontentloaded" })
   await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => undefined)
-  await page.screenshot({ path })
+  await page.screenshot({ path, fullPage: true })
 
   const layout = await page.evaluate(() => {
     const visibleTextRects = Array.from(
