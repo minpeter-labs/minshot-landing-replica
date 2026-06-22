@@ -16,10 +16,11 @@ Recreate the static Minshot landing page with real HTML and CSS. The page should
 - Primary blue hover: `#0588f0`
 - Body font: `Inter`, 15px, 24px line-height
 - Heading font: `New Spirit`, Georgia, serif
-- H1: 23.55px, 30px line-height, 400 weight, 0 letter spacing
-- H2: 17.75px, 24px line-height, 400 weight, 0 letter spacing
+- H1: 24px, 30px line-height, 400 weight, `-0.01em` letter spacing for English and 0 for CJK
+- H2: 18px, 24px line-height, 400 weight, `-0.01em` letter spacing for English and 0 for CJK
+- Chinese route font override: system-ui, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif; headings use 500 weight.
 - Container: 880px max-width, centered, 20px side padding on small viewports
-- Radius: 8px for media/panels, full radius for buttons
+- Radius: 12px for hero media, 8px for panels, full radius for buttons
 
 ## Layout Contract
 
@@ -38,7 +39,7 @@ At 1903x924:
 
 - Header: left logo icon plus `Minshot`; right `Pricing` anchor and soft pill `Follow for updates`.
 - Hero: serif H1, muted subtitle, blue pill download CTA with inline SVG download icon.
-- Hero media: real `<img>` element using local `assets/hero.webp`, 16:9, 8px radius.
+- Hero media: real `<picture>/<img>` element using local `assets/hero.webp` and a desktop `assets/hero-880.png` source to match Chrome's 880px live raster, 16:9, 12px radius.
 - Features: six rows with blue line icons, bold feature names, muted descriptions.
 - Pricing: two muted panels for Free and Pro, with check icons and live-page copy.
 - Footer: inline links `Download · Contact · 中文`, followed by creator/copyright line.

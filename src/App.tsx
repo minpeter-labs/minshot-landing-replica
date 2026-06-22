@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import type { Language, PageContent, PricingPlan } from "./content"
 import { getPageContent } from "./content"
-import { DownloadIcon, FeatureIcon } from "./icons"
+import { CheckIcon, DownloadIcon, FeatureIcon } from "./icons"
 
 const detectLanguage = (): Language => {
   const path = window.location.pathname.replace(/\/+$/, "")
@@ -81,13 +81,24 @@ function Hero({ page }: { readonly page: PageContent }) {
         <DownloadButton label={page.downloadLabel} />
       </div>
       <div className="hero-media">
-        <img
-          src="/assets/hero.webp"
-          width="1920"
-          height="1080"
-          alt={page.hero.imageAlt}
-          fetchPriority="high"
-        />
+        <picture>
+          <source media="(min-width: 921px)" srcSet="/assets/hero-880.png" />
+          <img
+            src="/assets/hero.webp"
+            width="1920"
+            height="1080"
+            alt={page.hero.imageAlt}
+            data-nimg="1"
+            decoding="async"
+            style={{
+              boxShadow: "var(--hero-shadow)",
+              color: "transparent",
+              display: "block",
+              height: "auto",
+              width: "100%",
+            }}
+          />
+        </picture>
       </div>
     </section>
   )
@@ -146,8 +157,8 @@ function PricingCard({ page, plan }: { readonly page: PageContent; readonly plan
       <ul>
         {plan.features.map((feature) => (
           <li key={feature}>
-            <span className="check-icon" aria-hidden="true" />
-            {feature}
+            <CheckIcon />
+            <span>{feature}</span>
           </li>
         ))}
       </ul>

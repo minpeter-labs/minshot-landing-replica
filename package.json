@@ -7,6 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
+    "visual:qa": "node scripts/strict-visual-qa.mjs",
     "typecheck": "tsc -b --pretty false",
     "lint": "biome check .",
     "check": "bun run typecheck && bun run lint && bun run build"

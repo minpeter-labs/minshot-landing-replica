@@ -34,9 +34,26 @@
   --blue-9: #0090ff;
   --blue-10: #0588f0;
   --radius-4: 8px;
+  --hero-radius: 12px;
   --shadow-3: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --hero-shadow:
+    oklab(0.834355 -0.000572754 -0.0182446 / 0.294118) 0 0 0 1px,
+    rgba(0, 0, 51, 0.06) 0 2px 3px -2px, rgba(0, 0, 0, 0.1) 0 3px 12px -4px,
+    rgba(0, 0, 0, 0.1) 0 4px 16px -8px;
   --font-body: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "new-spirit", ui-serif, Georgia, serif;
+  --font-size-body: 15px;
+  --line-height-body: 24px;
+  --font-size-h1: 24px;
+  --line-height-h1: 30px;
+  --font-size-h2: 18px;
+  --line-height-h2: 24px;
+  --letter-spacing-heading-en: -0.01em;
+}
+
+html[lang="zh-Hans"] {
+  --font-body: system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-heading: system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 * {
@@ -48,8 +65,8 @@ html {
   background: var(--slate-1);
   color: var(--slate-12);
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 24px;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -122,8 +139,15 @@ a {
 .text-link {
   color: var(--slate-11);
   text-decoration-line: underline;
+  text-decoration-color: oklab(0.137941 -0.00990726 -0.095074 / 0.14902);
   text-decoration-thickness: auto;
   text-underline-offset: 2px;
+}
+
+.nav-links .text-link {
+  font-weight: 500;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2.375px;
 }
 
 .text-link:hover,
@@ -194,14 +218,24 @@ h2 {
   letter-spacing: 0;
 }
 
+html[lang="en"] h1,
+html[lang="en"] h2 {
+  letter-spacing: var(--letter-spacing-heading-en);
+}
+
+html[lang="zh-Hans"] h1,
+html[lang="zh-Hans"] h2 {
+  font-weight: 500;
+}
+
 h1 {
-  font-size: 23.55px;
-  line-height: 30px;
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
 }
 
 h2 {
-  font-size: 17.6px;
-  line-height: 24px;
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
 }
 
 .hero-copy p,
@@ -235,15 +269,19 @@ h2 {
 
 .hero-media {
   overflow: hidden;
-  border-radius: var(--radius-4);
+  border-radius: var(--hero-radius);
   line-height: 0;
+}
+
+.hero-media picture,
+.hero-media img {
+  display: block;
 }
 
 .hero-media img {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--hero-shadow);
 }
 
 .feature-section,
@@ -270,8 +308,12 @@ h2 {
 
 .feature-row svg,
 .check-icon {
-  flex: 0 0 auto;
   color: var(--blue-9);
+}
+
+.feature-row svg,
+.check-icon {
+  flex: 0 1 auto;
 }
 
 .feature-row strong,
@@ -328,24 +370,6 @@ h2 {
   color: var(--slate-12);
 }
 
-.check-icon {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.check-icon::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 2px;
-  width: 9px;
-  height: 5px;
-  border-left: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(-45deg);
-}
-
 .license-button {
   min-height: 40px;
   margin-top: 4px;
@@ -377,6 +401,9 @@ h2 {
 
 .site-footer .text-link {
   color: var(--slate-a11);
+  text-decoration-line: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2.375px;
 }
 
 .site-footer .accent-link {
@@ -388,11 +415,18 @@ h2 {
   outline-offset: 3px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 920px) {
   .page-shell {
     padding: 0 24px;
   }
 
+  .site-header {
+    min-height: 96px;
+    padding: 48px 0 16px;
+  }
+}
+
+@media (max-width: 640px) {
   .site-header {
     min-height: 96px;
     padding: 48px 0 16px;
@@ -403,17 +437,7 @@ h2 {
   }
 
   h1 {
-    font-size: 23.55px;
-    line-height: 30px;
-  }
-
-  .feature-row {
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 380px) {
-  html[lang="zh-Hans"] .pricing-card > p {
-    font-size: 14.9px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
   }
 }
