@@ -1,0 +1,32 @@
+{
+  "name": "minshot-landing-replica",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "biome check .",
+    "check": "bun run typecheck && bun run lint && bun run build"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^5.0.0",
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.61.0",
+    "pngjs": "^7.0.0",
+    "react-grab": "latest",
+    "react-scan": "latest",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
+  }
+}
