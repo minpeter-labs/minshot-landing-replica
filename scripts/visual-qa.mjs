@@ -113,6 +113,8 @@ const checkHttp = async (url) => {
   }
 }
 
+const getFooterLinks = (layout) => layout.hrefs.slice(-4).map((href) => href ?? null)
+
 const run = async () => {
   const localUrl = process.env.LOCAL_URL ?? "http://127.0.0.1:4173"
   const liveUrl = process.env.LIVE_URL ?? "https://minshot.fehey.com"
@@ -214,6 +216,9 @@ const run = async () => {
     localVsLive,
     localZhMobile,
     pass: {
+      footerLinksMatchLive:
+        JSON.stringify(getFooterLinks(localDesktop.layout)) ===
+        JSON.stringify(getFooterLinks(liveDesktop.layout)),
       localDesktopSimilarity: localVsLive.similarityScore >= 99.5,
       localNoConsoleErrors:
         localDesktop.consoleErrors.length === 0 && localDesktop.pageErrors.length === 0,

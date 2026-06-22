@@ -154,7 +154,7 @@ const pages = {
       download: "Download",
       contact: "Contact",
       language: {
-        href: "/zh/",
+        href: "/zh",
         hreflang: "zh-Hans",
         label: "Switch to Chinese",
         lang: "zh-Hans",
