@@ -9,15 +9,16 @@
     "preview": "vite preview --host 127.0.0.1",
     "visual:qa": "node scripts/strict-visual-qa.mjs",
     "typecheck": "tsc -b --pretty false",
-    "lint": "biome check .",
-    "check": "bun run typecheck && bun run lint && bun run build"
+    "lint": "ultracite check",
+    "check": "bun run typecheck && bun run lint && bun run build",
+    "fix": "ultracite fix"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.6",
+    "@biomejs/biome": "2.4.16",
     "@types/node": "^24.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -28,6 +29,7 @@
     "react-grab": "latest",
     "react-scan": "latest",
     "typescript": "^5.8.3",
+    "ultracite": "7.8.3",
     "vite": "^7.0.0"
   }
 }
