@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -11,7 +11,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended",
+      "recommended": true,
       "suspicious": {
         "noExplicitAny": "error",
         "noConfusingVoidType": "error",
@@ -41,6 +41,14 @@
     }
   },
   "files": {
-    "includes": ["**", "!node_modules", "!dist", "!.git", "!.omo", "!.codegraph", "!assets"]
-  }
+    "includes": [
+      "!node_modules",
+      "!dist",
+      "!.git",
+      "!.omo",
+      "!.codegraph",
+      "!assets"
+    ]
+  },
+  "extends": ["ultracite/biome/core", "ultracite/biome/react"]
 }

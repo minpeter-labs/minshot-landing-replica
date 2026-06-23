@@ -3,8 +3,10 @@ import type { Language, PageContent, PricingPlan } from "./content"
 import { getPageContent } from "./content"
 import { CheckIcon, DownloadIcon, FeatureIcon } from "./icons"
 
+const trailingSlashRegex = /\/+$/
+
 const detectLanguage = (): Language => {
-  const path = window.location.pathname.replace(/\/+$/, "")
+  const path = window.location.pathname.replace(trailingSlashRegex, "")
   return path === "/zh" ? "zh" : "en"
 }
 
@@ -51,19 +53,19 @@ export function App() {
 function Header({ page }: { readonly page: PageContent }) {
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label={page.header.homeLabel}>
-        <img className="brand-icon" src="/assets/icon.png" width="28" height="28" alt="Minshot" />
+      <a aria-label={page.header.homeLabel} className="brand" href="/">
+        <img alt="Minshot" className="brand-icon" height="28" src="/assets/icon.png" width="28" />
         <span>Minshot</span>
       </a>
-      <nav className="nav-links" aria-label={page.header.navigationLabel}>
-        <a className="text-link high-contrast" href="#pricing">
+      <nav aria-label={page.header.navigationLabel} className="nav-links">
+        <a className="high-contrast text-link" href="#pricing">
           {page.header.pricing}
         </a>
         <a
           className="soft-button"
           href="https://x.com/ZaynHao"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
           {page.header.follow}
         </a>
@@ -74,7 +76,7 @@ function Header({ page }: { readonly page: PageContent }) {
 
 function Hero({ page }: { readonly page: PageContent }) {
   return (
-    <section className="hero-section" aria-labelledby="hero-title">
+    <section aria-labelledby="hero-title" className="hero-section">
       <div className="hero-copy">
         <h1 id="hero-title">{page.hero.title}</h1>
         <p>{page.hero.subtitle}</p>
@@ -84,12 +86,11 @@ function Hero({ page }: { readonly page: PageContent }) {
         <picture>
           <source media="(min-width: 921px)" srcSet="/assets/hero-880.png" />
           <img
-            src="/assets/hero.webp"
-            width="1920"
-            height="1080"
             alt={page.hero.imageAlt}
             data-nimg="1"
             decoding="async"
+            height="1080"
+            src="/assets/hero.webp"
             style={{
               boxShadow: "var(--hero-shadow)",
               color: "transparent",
@@ -97,6 +98,7 @@ function Hero({ page }: { readonly page: PageContent }) {
               height: "auto",
               width: "100%",
             }}
+            width="1920"
           />
         </picture>
       </div>
@@ -115,7 +117,7 @@ function DownloadButton({ label }: { readonly label: string }) {
 
 function Features({ page }: { readonly page: PageContent }) {
   return (
-    <section className="feature-section" aria-labelledby="features-title">
+    <section aria-labelledby="features-title" className="feature-section">
       <h2 id="features-title">{page.featuresTitle}</h2>
       <div className="feature-list">
         {page.features.map((feature) => (
@@ -134,7 +136,7 @@ function Features({ page }: { readonly page: PageContent }) {
 
 function Pricing({ page }: { readonly page: PageContent }) {
   return (
-    <section id="pricing" className="pricing-section" aria-labelledby="pricing-title" tabIndex={-1}>
+    <section aria-labelledby="pricing-title" className="pricing-section" id="pricing" tabIndex={-1}>
       <h2 id="pricing-title">{page.pricing.title}</h2>
       <p className="section-copy">{page.pricing.copy}</p>
       <div className="pricing-stack">
@@ -186,10 +188,10 @@ function Footer({ page }: { readonly page: PageContent }) {
         </a>
         <span aria-hidden="true">·</span>
         <a
+          aria-label={page.footer.language.label}
           className="text-link"
           href={page.footer.language.href}
           hrefLang={page.footer.language.hreflang}
-          aria-label={page.footer.language.label}
         >
           <span lang={page.footer.language.lang}>{page.footer.language.text}</span>
         </a>
@@ -199,8 +201,8 @@ function Footer({ page }: { readonly page: PageContent }) {
         <a
           className="text-link accent-link"
           href="https://x.com/ZaynHao"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
           Zayn Hao
         </a>

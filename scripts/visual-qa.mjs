@@ -39,7 +39,9 @@ const summarizeDiff = (diff, width, height) => {
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const alpha = diff.data[(y * width + x) * 4 + 3]
-      if (alpha === 0) continue
+      if (alpha === 0) {
+        continue
+      }
       changedPixels += 1
       bounds.left = Math.min(bounds.left, x)
       bounds.right = Math.max(bounds.right, x + 1)
@@ -92,7 +94,7 @@ export const comparePng = async (options) => {
     diff.data,
     width,
     height,
-    { diffMask: true, includeAA: true, threshold: options.pixelmatchThreshold },
+    { diffMask: true, includeAA: true, threshold: options.pixelmatchThreshold }
   )
 
   await writeFile(options.diffPath, PNG.sync.write(diff))
@@ -126,7 +128,9 @@ export const capturePage = async ({ browser, path, target, surface }) => {
   const requestFailures = []
 
   page.on("console", (message) => {
-    if (message.type() === "error") consoleErrors.push(message.text())
+    if (message.type() === "error") {
+      consoleErrors.push(message.text())
+    }
   })
   page.on("pageerror", (error) => pageErrors.push(error.message))
   page.on("requestfailed", (request) => {
@@ -141,7 +145,9 @@ export const capturePage = async ({ browser, path, target, surface }) => {
   const layout = await page.evaluate(() => {
     const rectFor = (selector) => {
       const element = document.querySelector(selector)
-      if (!element) return null
+      if (!element) {
+        return null
+      }
       const rect = element.getBoundingClientRect()
       return {
         bottom: rect.bottom,
@@ -166,7 +172,7 @@ export const capturePage = async ({ browser, path, target, surface }) => {
       }
     }).filter((rect) => rect.width > 0 && rect.height > 0 && rect.text.length > 0)
     const overflowingTextRects = textRects.filter(
-      (rect) => rect.left < -1 || rect.right > window.innerWidth + 1,
+      (rect) => rect.left < -1 || rect.right > window.innerWidth + 1
     )
 
     return {

@@ -12,44 +12,22 @@ export type PricingAction =
   | { readonly kind: "download" }
   | { readonly kind: "link"; readonly href: string; readonly label: string }
 
-export type PricingPlan = {
-  readonly name: string
-  readonly price: string
+export interface PricingPlan {
+  readonly action: PricingAction
   readonly copy: string
   readonly features: readonly string[]
-  readonly action: PricingAction
+  readonly name: string
+  readonly price: string
 }
 
-export type PageContent = {
-  readonly meta: {
-    readonly lang: string
-    readonly title: string
-    readonly description: string
-    readonly canonical: string
-  }
-  readonly header: {
-    readonly homeLabel: string
-    readonly navigationLabel: string
-    readonly pricing: string
-    readonly follow: string
-  }
-  readonly hero: {
-    readonly title: string
-    readonly subtitle: string
-    readonly imageAlt: string
-  }
+export interface PageContent {
   readonly downloadLabel: string
-  readonly featuresTitle: string
   readonly features: readonly {
     readonly icon: FeatureIconName
     readonly name: string
     readonly description: string
   }[]
-  readonly pricing: {
-    readonly title: string
-    readonly copy: string
-    readonly plans: readonly PricingPlan[]
-  }
+  readonly featuresTitle: string
   readonly footer: {
     readonly download: string
     readonly contact: string
@@ -62,6 +40,28 @@ export type PageContent = {
     }
     readonly madeByPrefix: string
     readonly madeBySuffix: string
+  }
+  readonly header: {
+    readonly homeLabel: string
+    readonly navigationLabel: string
+    readonly pricing: string
+    readonly follow: string
+  }
+  readonly hero: {
+    readonly title: string
+    readonly subtitle: string
+    readonly imageAlt: string
+  }
+  readonly meta: {
+    readonly lang: string
+    readonly title: string
+    readonly description: string
+    readonly canonical: string
+  }
+  readonly pricing: {
+    readonly title: string
+    readonly copy: string
+    readonly plans: readonly PricingPlan[]
   }
 }
 

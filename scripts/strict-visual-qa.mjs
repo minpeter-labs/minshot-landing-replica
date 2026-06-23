@@ -9,7 +9,7 @@ const evidencePath = process.env.EVIDENCE_PATH
 
 if (!evidencePath) {
   throw new Error(
-    "EVIDENCE_PATH is required, for example EVIDENCE_PATH=.omo/evidence/visual-qa.json",
+    "EVIDENCE_PATH is required, for example EVIDENCE_PATH=.omo/evidence/visual-qa.json"
   )
 }
 
@@ -28,7 +28,7 @@ const captureTarget = async (browser, target) => {
     surfaces.map(async (surface) => {
       const path = `${screenshotRoot}/${target.id}-${surface.id}-${surface.viewport.width}x${surface.viewport.height}.png`
       return [surface.id, await capturePage({ browser, path, surface, target })]
-    }),
+    })
   )
   return Object.fromEntries(entries)
 }
@@ -44,7 +44,7 @@ const compareTargets = async ({ actual, actualId, expected, expectedId }) => {
         pixelmatchThreshold,
         strictSimilarity,
       }),
-    ]),
+    ])
   )
   return Object.fromEntries(entries)
 }
@@ -59,7 +59,7 @@ const footerMatchesLive = (captures, liveCaptures) =>
     surfaces.map((surface) => [
       surface.id,
       footerSignature(captures[surface.id]) === footerSignature(liveCaptures[surface.id]),
-    ]),
+    ])
   )
 
 const routeIsReachable = (receipt) => [200, 301, 302, 307, 308].includes(receipt.status)
@@ -71,10 +71,10 @@ const targetPass = (captures, routes) => ({
       captures[surface.id].consoleErrors.length === 0 &&
         captures[surface.id].pageErrors.length === 0 &&
         captures[surface.id].requestFailures.length === 0,
-    ]),
+    ])
   ),
   noHorizontalOverflow: Object.fromEntries(
-    surfaces.map((surface) => [surface.id, !captures[surface.id].layout.overflow.horizontal]),
+    surfaces.map((surface) => [surface.id, !captures[surface.id].layout.overflow.horizontal])
   ),
   routesReachable:
     routes.root.status === 200 &&
@@ -110,10 +110,10 @@ const buildComparisons = async (captures) => ({
 
 const buildPass = ({ captures, comparisons, routes, targets }) => {
   const strictPass = Object.fromEntries(
-    Object.entries(comparisons).map(([id, comparison]) => [id, passBySurface(comparison)]),
+    Object.entries(comparisons).map(([id, comparison]) => [id, passBySurface(comparison)])
   )
   const targetPasses = Object.fromEntries(
-    targets.map((target) => [target.id, targetPass(captures[target.id], routes[target.id])]),
+    targets.map((target) => [target.id, targetPass(captures[target.id], routes[target.id])])
   )
   const footerPass = {
     local: footerMatchesLive(captures.local, captures.live),
@@ -122,7 +122,7 @@ const buildPass = ({ captures, comparisons, routes, targets }) => {
 
   return {
     allStrictSimilarities: Object.values(strictPass).every((bySurface) =>
-      Object.values(bySurface).every(Boolean),
+      Object.values(bySurface).every(Boolean)
     ),
     footerMatchesLive: footerPass,
     ok:
@@ -133,7 +133,7 @@ const buildPass = ({ captures, comparisons, routes, targets }) => {
           target.routesReachable &&
           target.zhMobileIsChinese &&
           Object.values(target.noBrowserErrors).every(Boolean) &&
-          Object.values(target.noHorizontalOverflow).every(Boolean),
+          Object.values(target.noHorizontalOverflow).every(Boolean)
       ),
     strictSimilarity: strictPass,
     targets: targetPasses,
@@ -156,11 +156,11 @@ const run = async () => {
   try {
     const captures = Object.fromEntries(
       await Promise.all(
-        targets.map(async (target) => [target.id, await captureTarget(browser, target)]),
-      ),
+        targets.map(async (target) => [target.id, await captureTarget(browser, target)])
+      )
     )
     const routes = Object.fromEntries(
-      await Promise.all(targets.map(async (target) => [target.id, await checkRoutes(target)])),
+      await Promise.all(targets.map(async (target) => [target.id, await checkRoutes(target)]))
     )
     const comparisons = await buildComparisons(captures)
     const pass = buildPass({ captures, comparisons, routes, targets })
