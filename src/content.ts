@@ -1,4 +1,4 @@
-export type Language = "en" | "zh"
+export type Language = "en" | "zh";
 
 export type FeatureIconName =
   | "capture"
@@ -6,67 +6,67 @@ export type FeatureIconName =
   | "arrow"
   | "backdrop"
   | "multiCapture"
-  | "recent"
+  | "recent";
 
 export type PricingAction =
   | { readonly kind: "download" }
-  | { readonly kind: "link"; readonly href: string; readonly label: string }
+  | { readonly kind: "link"; readonly href: string; readonly label: string };
 
 export interface PricingPlan {
-  readonly action: PricingAction
-  readonly copy: string
-  readonly features: readonly string[]
-  readonly name: string
-  readonly price: string
+  readonly action: PricingAction;
+  readonly copy: string;
+  readonly features: readonly string[];
+  readonly name: string;
+  readonly price: string;
 }
 
 export interface PageContent {
-  readonly downloadLabel: string
+  readonly downloadLabel: string;
   readonly features: readonly {
-    readonly icon: FeatureIconName
-    readonly name: string
-    readonly description: string
-  }[]
-  readonly featuresTitle: string
+    readonly icon: FeatureIconName;
+    readonly name: string;
+    readonly description: string;
+  }[];
+  readonly featuresTitle: string;
   readonly footer: {
-    readonly download: string
-    readonly contact: string
+    readonly download: string;
+    readonly contact: string;
     readonly language: {
-      readonly href: string
-      readonly hreflang: string
-      readonly label: string
-      readonly lang: string
-      readonly text: string
-    }
-    readonly madeByPrefix: string
-    readonly madeBySuffix: string
-  }
+      readonly href: string;
+      readonly hreflang: string;
+      readonly label: string;
+      readonly lang: string;
+      readonly text: string;
+    };
+    readonly madeByPrefix: string;
+    readonly madeBySuffix: string;
+  };
   readonly header: {
-    readonly homeLabel: string
-    readonly navigationLabel: string
-    readonly pricing: string
-    readonly follow: string
-  }
+    readonly homeLabel: string;
+    readonly navigationLabel: string;
+    readonly pricing: string;
+    readonly follow: string;
+  };
   readonly hero: {
-    readonly title: string
-    readonly subtitle: string
-    readonly imageAlt: string
-  }
+    readonly title: string;
+    readonly subtitle: string;
+    readonly imageAlt: string;
+  };
   readonly meta: {
-    readonly lang: string
-    readonly title: string
-    readonly description: string
-    readonly canonical: string
-  }
+    readonly lang: string;
+    readonly title: string;
+    readonly description: string;
+    readonly canonical: string;
+  };
   readonly pricing: {
-    readonly title: string
-    readonly copy: string
-    readonly plans: readonly PricingPlan[]
-  }
+    readonly title: string;
+    readonly copy: string;
+    readonly plans: readonly PricingPlan[];
+  };
 }
 
 const licenseCheckoutUrl =
-  "https://gridea.lemonsqueezy.com/checkout/buy/c48be1a9-94b5-43d8-a52d-b1fe2971ffe9?logo=0"
+  "https://gridea.lemonsqueezy.com/checkout/buy/c48be1a9-94b5-43d8-a52d-b1fe2971ffe9?logo=0";
 
 const pages = {
   en: {
@@ -85,7 +85,8 @@ const pages = {
     },
     hero: {
       title: "A native macOS screenshot tool",
-      subtitle: "Capture, annotate, and frame your screenshots — fast, and beautifully.",
+      subtitle:
+        "Capture, annotate, and frame your screenshots — fast, and beautifully.",
       imageAlt: "A screenshot captured, annotated, and framed with Minshot",
     },
     downloadLabel: "Download for Mac",
@@ -101,7 +102,11 @@ const pages = {
         name: "Annotate",
         description: " — arrows, text, boxes, blur, counters.",
       },
-      { icon: "arrow", name: "Hand-drawn arrows", description: " — sketch-style, not clip-art." },
+      {
+        icon: "arrow",
+        name: "Hand-drawn arrows",
+        description: " — sketch-style, not clip-art.",
+      },
       {
         icon: "backdrop",
         name: "Backdrop",
@@ -146,7 +151,11 @@ const pages = {
             "Free updates, forever",
             "$4.99 once — no subscription, ever",
           ],
-          action: { kind: "link", href: licenseCheckoutUrl, label: "Buy a license" },
+          action: {
+            kind: "link",
+            href: licenseCheckoutUrl,
+            label: "Buy a license",
+          },
         },
       ],
     },
@@ -168,7 +177,8 @@ const pages = {
     meta: {
       lang: "zh-Hans",
       title: "Minshot · 原生 macOS 截图工具",
-      description: "在 macOS 上截图、标注、加背景。原生、快、好看。$4.99 一次买断，最多 2 台 Mac。",
+      description:
+        "在 macOS 上截图、标注、加背景。原生、快、好看。$4.99 一次买断，最多 2 台 Mac。",
       canonical: "https://minshot.fehey.com/zh",
     },
     header: {
@@ -185,12 +195,36 @@ const pages = {
     downloadLabel: "下载 Mac 版",
     featuresTitle: "该有的都有，多余的没有",
     features: [
-      { icon: "capture", name: "随心截取", description: " —— 区域、窗口，或整个屏幕。" },
-      { icon: "annotate", name: "标注", description: " —— 箭头、文字、方框、模糊、序号。" },
-      { icon: "arrow", name: "手绘箭头", description: " —— 随手画的质感，不是模板素材。" },
-      { icon: "backdrop", name: "精致背景", description: " —— 给截图配上好看的背景。" },
-      { icon: "multiCapture", name: "多张拼接", description: " —— 把几张截图拼成一张。" },
-      { icon: "recent", name: "回看最近", description: " —— 随时回到前几张截图 —— 标注原样还在。" },
+      {
+        icon: "capture",
+        name: "随心截取",
+        description: " —— 区域、窗口，或整个屏幕。",
+      },
+      {
+        icon: "annotate",
+        name: "标注",
+        description: " —— 箭头、文字、方框、模糊、序号。",
+      },
+      {
+        icon: "arrow",
+        name: "手绘箭头",
+        description: " —— 随手画的质感，不是模板素材。",
+      },
+      {
+        icon: "backdrop",
+        name: "精致背景",
+        description: " —— 给截图配上好看的背景。",
+      },
+      {
+        icon: "multiCapture",
+        name: "多张拼接",
+        description: " —— 把几张截图拼成一张。",
+      },
+      {
+        icon: "recent",
+        name: "回看最近",
+        description: " —— 随时回到前几张截图 —— 标注原样还在。",
+      },
     ],
     pricing: {
       title: "免费就能用。$4.99 买断。",
@@ -238,6 +272,7 @@ const pages = {
       madeBySuffix: " 制作 · © 2026 Minshot",
     },
   },
-} satisfies Record<Language, PageContent>
+} satisfies Record<Language, PageContent>;
 
-export const getPageContent = (language: Language): PageContent => pages[language]
+export const getPageContent = (language: Language): PageContent =>
+  pages[language];

@@ -10,7 +10,7 @@ Recreate the static Minshot landing page with real HTML and CSS. The page should
 - Primary text: `#1c2024`
 - Secondary text: `#60646c`
 - Muted border/text: `#d7dbdf`, `#8b8d98`
-- Soft panel: `rgba(0, 0, 0, 0.024)`
+- Soft panel: `rgba(0, 0, 85, 0.024)`
 - Soft control: `rgba(0, 0, 51, 0.06)`
 - Primary blue: `#0090ff`
 - Primary blue hover: `#0588f0`
@@ -20,7 +20,8 @@ Recreate the static Minshot landing page with real HTML and CSS. The page should
 - H2: 18px, 24px line-height, 400 weight, `-0.01em` letter spacing for English and 0 for CJK
 - Chinese route font override: system-ui, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif; headings use 500 weight.
 - Container: 880px max-width, centered, 20px side padding on small viewports
-- Radius: 12px for hero media, 8px for panels, full radius for buttons
+- Radius: 12px for hero media and panels, full radius for buttons
+- Primary CTA icon opacity: 0.9 white stroke inside the blue download button
 
 ## Layout Contract
 

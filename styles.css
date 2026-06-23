@@ -29,13 +29,16 @@
   --slate-a11: rgba(0, 7, 20, 0.624);
   --slate-11: #60646c;
   --slate-12: #1c2024;
-  --gray-a2: rgba(0, 0, 0, 0.024);
+  --gray-a2: rgba(0, 0, 85, 0.024);
   --blue-a11: rgba(0, 109, 203, 0.95);
   --blue-9: #0090ff;
   --blue-10: #0588f0;
-  --radius-4: 8px;
+  --radius-4: 12px;
   --hero-radius: 12px;
-  --shadow-3: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-3:
+    oklab(0.834355 -0.000572754 -0.0182446 / 0.294118) 0 0 0 1px,
+    rgba(0, 0, 51, 0.06) 0 2px 3px -2px, rgba(0, 0, 0, 0.1) 0 3px 12px -4px,
+    rgba(0, 0, 0, 0.1) 0 4px 16px -8px;
   --hero-shadow:
     oklab(0.834355 -0.000572754 -0.0182446 / 0.294118) 0 0 0 1px,
     rgba(0, 0, 51, 0.06) 0 2px 3px -2px, rgba(0, 0, 0, 0.1) 0 3px 12px -4px,
@@ -161,11 +164,16 @@ a {
 .soft-button,
 .primary-button {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   font-family: var(--font-body);
+  text-align: center;
+  vertical-align: top;
   white-space: nowrap;
   border-radius: 9999px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .soft-button {
@@ -255,11 +263,14 @@ h2 {
 
 .primary-button {
   gap: 12px;
-  min-height: 40px;
+  height: 40px;
+  min-height: auto;
   padding: 0 16px;
   margin-top: 4px;
   font-weight: 500;
   color: white;
+  overflow-wrap: break-word;
+  white-space: normal;
   background: var(--blue-9);
   box-shadow: none;
 }
@@ -267,6 +278,10 @@ h2 {
 .primary-button:hover,
 .primary-button:focus-visible {
   background: var(--blue-10);
+}
+
+.primary-button svg path {
+  stroke-opacity: 0.9;
 }
 
 .hero-media {

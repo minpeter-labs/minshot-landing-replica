@@ -1,39 +1,40 @@
-import { useEffect } from "react"
-import type { Language, PageContent, PricingPlan } from "./content"
-import { getPageContent } from "./content"
-import { CheckIcon, DownloadIcon, FeatureIcon } from "./icons"
+import { useEffect } from "react";
+import type { Language, PageContent, PricingPlan } from "./content";
+import { getPageContent } from "./content";
+import { CheckIcon, DownloadIcon, FeatureIcon } from "./icons";
 
-const trailingSlashRegex = /\/+$/
+const trailingSlashRegex = /\/+$/;
+const downloadUrl = "https://dl.minshot.fehey.com/Minshot-0.4.1.dmg";
 
 const detectLanguage = (): Language => {
-  const path = window.location.pathname.replace(trailingSlashRegex, "")
-  return path === "/zh" ? "zh" : "en"
-}
+  const path = window.location.pathname.replace(trailingSlashRegex, "");
+  return path === "/zh" ? "zh" : "en";
+};
 
 const updateMetadata = (page: PageContent): void => {
-  document.documentElement.lang = page.meta.lang
-  document.title = page.meta.title
+  document.documentElement.lang = page.meta.lang;
+  document.title = page.meta.title;
 
   document
     .querySelector<HTMLMetaElement>('meta[name="description"]')
-    ?.setAttribute("content", page.meta.description)
+    ?.setAttribute("content", page.meta.description);
   document
     .querySelector<HTMLLinkElement>('link[rel="canonical"]')
-    ?.setAttribute("href", page.meta.canonical)
+    ?.setAttribute("href", page.meta.canonical);
   document
     .querySelector<HTMLMetaElement>('meta[property="og:title"]')
-    ?.setAttribute("content", page.meta.title)
+    ?.setAttribute("content", page.meta.title);
   document
     .querySelector<HTMLMetaElement>('meta[property="og:description"]')
-    ?.setAttribute("content", page.meta.description)
-}
+    ?.setAttribute("content", page.meta.description);
+};
 
 export function App() {
-  const page = getPageContent(detectLanguage())
+  const page = getPageContent(detectLanguage());
 
   useEffect(() => {
-    updateMetadata(page)
-  }, [page])
+    updateMetadata(page);
+  }, [page]);
 
   return (
     <div className="page-shell">
@@ -47,14 +48,20 @@ export function App() {
         <Footer page={page} />
       </div>
     </div>
-  )
+  );
 }
 
 function Header({ page }: { readonly page: PageContent }) {
   return (
     <header className="site-header">
       <a aria-label={page.header.homeLabel} className="brand" href="/">
-        <img alt="Minshot" className="brand-icon" height="28" src="/assets/icon.png" width="28" />
+        <img
+          alt="Minshot"
+          className="brand-icon"
+          height="28"
+          src="/assets/icon.png"
+          width="28"
+        />
         <span>Minshot</span>
       </a>
       <nav aria-label={page.header.navigationLabel} className="nav-links">
@@ -71,7 +78,7 @@ function Header({ page }: { readonly page: PageContent }) {
         </a>
       </nav>
     </header>
-  )
+  );
 }
 
 function Hero({ page }: { readonly page: PageContent }) {
@@ -103,16 +110,16 @@ function Hero({ page }: { readonly page: PageContent }) {
         </picture>
       </div>
     </section>
-  )
+  );
 }
 
 function DownloadButton({ label }: { readonly label: string }) {
   return (
-    <a className="primary-button" href="https://dl.minshot.fehey.com/Minshot-0.4.0.dmg">
+    <a className="primary-button" href={downloadUrl}>
       <DownloadIcon />
-      <span>{label}</span>
+      {label}
     </a>
-  )
+  );
 }
 
 function Features({ page }: { readonly page: PageContent }) {
@@ -131,12 +138,17 @@ function Features({ page }: { readonly page: PageContent }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function Pricing({ page }: { readonly page: PageContent }) {
   return (
-    <section aria-labelledby="pricing-title" className="pricing-section" id="pricing" tabIndex={-1}>
+    <section
+      aria-labelledby="pricing-title"
+      className="pricing-section"
+      id="pricing"
+      tabIndex={-1}
+    >
       <h2 id="pricing-title">{page.pricing.title}</h2>
       <p className="section-copy">{page.pricing.copy}</p>
       <div className="pricing-stack">
@@ -145,10 +157,16 @@ function Pricing({ page }: { readonly page: PageContent }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
-function PricingCard({ page, plan }: { readonly page: PageContent; readonly plan: PricingPlan }) {
+function PricingCard({
+  page,
+  plan,
+}: {
+  readonly page: PageContent;
+  readonly plan: PricingPlan;
+}) {
   return (
     <article className="pricing-card">
       <div className="price-title">
@@ -172,14 +190,14 @@ function PricingCard({ page, plan }: { readonly page: PageContent; readonly plan
         </a>
       )}
     </article>
-  )
+  );
 }
 
 function Footer({ page }: { readonly page: PageContent }) {
   return (
     <footer className="site-footer">
       <div className="footer-links">
-        <a className="text-link" href="https://dl.minshot.fehey.com/Minshot-0.4.0.dmg">
+        <a className="text-link" href={downloadUrl}>
           {page.footer.download}
         </a>
         <span aria-hidden="true">·</span>
@@ -193,7 +211,9 @@ function Footer({ page }: { readonly page: PageContent }) {
           href={page.footer.language.href}
           hrefLang={page.footer.language.hreflang}
         >
-          <span lang={page.footer.language.lang}>{page.footer.language.text}</span>
+          <span lang={page.footer.language.lang}>
+            {page.footer.language.text}
+          </span>
         </a>
       </div>
       <p>
@@ -209,5 +229,5 @@ function Footer({ page }: { readonly page: PageContent }) {
         {page.footer.madeBySuffix}
       </p>
     </footer>
-  )
+  );
 }
